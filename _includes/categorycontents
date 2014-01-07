@@ -1,0 +1,13 @@
+{% for summary in selectedcategory %}
+<article class="article-summary">
+  <a href="{{ summary.url }}">
+    <h1>{{ summary.title }}</h1>
+    <p>{{ summary.description }}</p>
+    <ul class="tags">
+{% if summary.course %}<li class="course">{{ summary.course }}</li>{% else %}<li class="empty"/>{% endif %}
+{% if summary.project %}<li class="project">{{ summary.project }}</li>{% else %}<li class="empty"/>{% endif %}
+{% for language in summary.languages %}<li class="language">{{ language }}</li>
+{% endfor %}</ul>
+    <time datetime="{{ summary.date | date_to_xmlschema }}">{{ summary.date | date_to_string }}</time>
+  </a>
+  </article>{% endfor %}

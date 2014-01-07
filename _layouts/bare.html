@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.name }}</title>
+    {% if page.description %}
+    <meta name="description" content="{{ page.description }}" />
+    {% endif %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+  </head>
+  <body>
+    {% include header %}
+    {% if page.status == "In Progress" %}
+      <aside id="work-in-progress">
+         <header>
+           <h1>Work in progress ...</h1>
+           <p>This page has not been completed and futher work is necessary.</p>
+         </header>
+      </aside>
+    {% endif %}
+    <main>
+      <article>{{ content }}</article>
+      {% if page.github %}
+      <article class="github">
+        <h2 class="master-head">Pull Request Avaliable on Github</h2>
+        <p>The pull request for this work is avaliable, see <a href="{{ page.github.pullrequest }}">{{ page.github.caption }}</a></p>
+      </article>
+      {% endif %}
+      {% if page.project %}
+      <article class="aboutproject">
+        {% assign projectDetails = site.data.projects[page.project] %}
+        <h2 class="master-head">About Project - {{ projectDetails.name }}</h2>
+        <p>{{ projectDetails.description }}</p>
+        <p>Find out more at: <a href="{{ projectDetails.url }}">{{ projectDetails.url }}</a></p>
+      </article>
+      {% endif %}
+      {% if page.course %}
+      <article class="aboutcourse">
+        {% assign courseDetails = site.data.courses[page.course] %}
+        {% assign courseLocation = site.data.places[courseDetails.place] %}
+        <h2>About Course - {{ page.course }}</h2>
+        <ul>
+          <li><b>Course Provider:</b> <a href="{{ courseLocation.uri }}">{{ courseLocation.name }}</a></li>
+          <li><b>Course Title:</b> {{ courseDetails.name }}</li>
+          <li><b>Course Taken:</b> {{ courseDetails.date }}</li>
+        </ul>
+      </article>
+      {% endif %}
+    </main>
+  </body>
+</html>
