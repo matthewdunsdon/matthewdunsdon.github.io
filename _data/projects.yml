@@ -1,0 +1,4 @@
+fluentmigrator:
+  name: Fluent Migrator
+  description: The fluentmigrator project is owned by Sean Chambers and it enables database migration scripts to be written in C# without requiring schema or data changes to use SQL strings.
+  url: https://github.com/schambers/fluentmigrator/
